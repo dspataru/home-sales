@@ -51,11 +51,55 @@ WHERE bedrooms = 4
 GROUP BY YEAR(date)
 ORDER BY year_sold
 ```
-The results:
+The result:
 
-![Q1-results](https://github.com/dspataru/home-sales/assets/61765352/e51f42dd-1b7b-440f-8481-38b0d2734cfc)
+![Q1-result](https://github.com/dspataru/home-sales/assets/61765352/e51f42dd-1b7b-440f-8481-38b0d2734cfc)
 
 
-3. What is the average price of a home for each year it was built that has three bedrooms and three bathrooms? Round off your answer to two decimal places.
-4. What is the average price of a home for each year that has three bedrooms, three bathrooms, two floors, and is greater than or equal to 2,000 square feet? Round off your answer to two decimal places.
-5. What is the "view" rating for homes costing more than or equal to $350,000? Determine the run time for this query, and round off your answer to two decimal places.
+2. What is the average price of a home for each year it was built that has three bedrooms and three bathrooms? Round off your answer to two decimal places.
+
+The query:
+```sql
+SELECT date_built AS year_built, ROUND(AVG(price), 2) AS avg_price
+FROM home_sales
+WHERE bedrooms = 3 AND bathrooms = 3
+GROUP BY date_built
+ORDER BY year_built
+```
+
+The result:
+
+![Q2-result](https://github.com/dspataru/home-sales/assets/61765352/be939b60-e29d-403c-b196-71ecb82c24a4)
+
+
+3. What is the average price of a home for each year that has three bedrooms, three bathrooms, two floors, and is greater than or equal to 2,000 square feet? Round off your answer to two decimal places.
+
+The query:
+```sql
+SELECT date_built AS year_built, ROUND(AVG(price), 2) AS avg_price
+FROM home_sales
+WHERE bedrooms = 3 AND bathrooms = 3 AND floors = 2 AND sqft_living >= 2000
+GROUP BY date_built
+ORDER BY year_built
+```
+
+The result: 
+
+![Q3-result](https://github.com/dspataru/home-sales/assets/61765352/5a87f13d-21a6-463b-94ac-333bda4d8c02)
+
+
+4. What is the "view" rating for homes costing more than or equal to $350,000? Determine the run time for this query, and round off your answer to two decimal places.
+
+The query:
+```sql
+SELECT view, ROUND(AVG(price), 2) AS avg_price
+FROM home_sales
+WHERE price >= 350000
+GROUP BY view
+ORDER BY view
+```
+
+The result: 
+
+![Q4-result](https://github.com/dspataru/home-sales/assets/61765352/e434d181-8d23-45c6-bdf1-169f3871d496)
+
