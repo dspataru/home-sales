@@ -3,6 +3,11 @@
 ![real-estate-and-big-data](https://github.com/dspataru/home-sales/assets/61765352/7fb25139-719a-4a3a-9ce2-bb768c212ee2)
 
 ## Table of Contents
+* [Introduction](https://github.com/dspataru/home-sales/blob/main/README.md#background)
+* [Data Source](https://github.com/dspataru/home-sales/blob/main/README.md#data-source)
+* [Data Analysis](https://github.com/dspataru/home-sales/blob/main/README.md#data-analysis)
+* [Summary](https://github.com/dspataru/home-sales/blob/main/README.md#summary)
+
 
 ## Introduction
 
@@ -98,6 +103,8 @@ WHERE price >= 350000
 GROUP BY view
 ORDER BY view
 ```
+
+## Summary
 
 The result: 
 
