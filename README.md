@@ -6,8 +6,6 @@
 * [Introduction](https://github.com/dspataru/home-sales/blob/main/README.md#background)
 * [Data Source](https://github.com/dspataru/home-sales/blob/main/README.md#data-source)
 * [Data Analysis](https://github.com/dspataru/home-sales/blob/main/README.md#data-analysis)
-* [Summary](https://github.com/dspataru/home-sales/blob/main/README.md#summary)
-
 
 ## Introduction
 
@@ -104,9 +102,12 @@ GROUP BY view
 ORDER BY view
 ```
 
-## Summary
-
 The result: 
 
 ![Q4-result](https://github.com/dspataru/home-sales/assets/61765352/e434d181-8d23-45c6-bdf1-169f3871d496)
 
+The runtime of the last query was calculated and a comparison between cached vs not cached vs partitioned data was performed. To cache the home_sales table, we used `spark.sql("cache table home_sales")` and checked to ensure the table was cached using the following command: `spark.catalog.isCached('home_sales')`. This command will return True if it is cached, and False if it is not cached. The partitioned data was partitioned by the "date_built" field on the formatted parquet home sales data using the following command: `homeSales_df.write.partitionBy("date_built").mode("overwrite").parquet('parquet_home_sales_partitioned')`. The data was read and saved into a new dataframe and a temporary table for the parquet data was created using `homeSales_df_p.createOrReplaceTempView('p_home_sales_p')`. The same query as described in question four above was run on the cached and partitioned data. The runtime between all three was compared and the results are seen in the table below:
+
+|  | Spark Data | Cache Data | Partitioned Data |
+|----------|----------|----------|----------|
+| Runtime | 1.348 seconds | 0.7433 seconds | 0.6002 seconds |
